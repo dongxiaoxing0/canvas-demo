@@ -12,6 +12,7 @@ window.onresize = function () {
 }
 
 var enabled = false;
+var eraserEnabled = false;
 var lastPoint = {
     x: undefined,
     y: undefined,
@@ -37,15 +38,21 @@ canvas.onmousemove = function (event) {
     if (enabled) {
         var x = event.clientX;
         var y = event.clientY;
-        drawCircle(x, y);
-        context.lineWidth = 10;
-        context.beginPath();
-        context.moveTo(x,y);
-        context.lineTo(lastPoint.x, lastPoint.y);
-        context.closePath();
-        context.stroke();
-        lastPoint.x = x;
-        lastPoint.y = y;       
+        if (eraserEnabled) {
+            context.clearRect(x-10,y-10,20,20);
+        }else{
+            drawCircle(x, y);
+            context.lineWidth = 10;
+            context.beginPath();
+            context.moveTo(x,y);
+            context.lineTo(lastPoint.x, lastPoint.y);
+            context.closePath();
+            context.stroke();
+            lastPoint.x = x;
+            lastPoint.y = y;
+        }
+
+
     }
 
 
@@ -54,4 +61,9 @@ canvas.onmousemove = function (event) {
 
 canvas.onmouseup = function () {
     enabled = !enabled;
+}
+
+var eraser = document.getElementById('eraser');
+eraser.onclick = function () {
+    eraserEnabled = !eraserEnabled;
 }
