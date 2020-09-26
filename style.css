@@ -27,7 +27,7 @@ ol,ul {
 }
 .settings svg.active {
     transform: scale(1.2);
-    color: red;
+    fill: red;
 }
 .colors {
     position: fixed;
