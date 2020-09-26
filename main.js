@@ -1,7 +1,5 @@
 var canvas = document.getElementById('canvas');
-console.log(canvas);
 var context = canvas.getContext('2d');
-
 
 canvas.width = document.documentElement.clientWidth;
 canvas.height = document.documentElement.clientHeight;
@@ -17,15 +15,18 @@ var lastPoint = {
     x: undefined,
     y: undefined,
 }
+context.lineWidth = 5;
 
-
-
-if (document.body.touchstart !== undefined) {
+if (document.body.touchstart === undefined) {
     canvas.onmousedown = function (event) {
         enabled = !enabled;
         var x = event.clientX;
         var y = event.clientY;
-        drawCircle(x, y);
+        if (eraserEnabled) {
+            context.clearRect(x-10,y-10,20,20);
+        }else{
+            drawCircle(x, y);
+        }
         lastPoint.x = x;
         lastPoint.y = y;
     }
@@ -39,7 +40,6 @@ if (document.body.touchstart !== undefined) {
                 context.clearRect(x-10,y-10,20,20);
             }else{
                 drawCircle(x, y);
-                context.lineWidth = 10;
                 context.beginPath();
                 context.moveTo(x,y);
                 context.lineTo(lastPoint.x, lastPoint.y);
@@ -71,8 +71,6 @@ if (document.body.touchstart !== undefined) {
                 if (eraserEnabled) {
                     context.clearRect(x-10,y-10,20,20);
                 }else{
-                    drawCircle(x, y);
-                    context.lineWidth = 10;
                     context.beginPath();
                     context.moveTo(x,y);
                     context.lineTo(lastPoint.x, lastPoint.y);
@@ -91,13 +89,61 @@ if (document.body.touchstart !== undefined) {
 
 function drawCircle(x, y) {
     context.beginPath();
-    context.arc(x, y, 5, 0, Math.PI * 2);
+    context.arc(x, y, (context.lineWidth)/2, 0, Math.PI * 2);
     context.fill();
 };
 
+pen.onclick = function () {
+    eraserEnabled = false;
+    pen.classList.add('active');
+    eraser.classList.remove('active');
+}
 
-
-var eraser = document.getElementById('eraser');
 eraser.onclick = function () {
-    eraserEnabled = !eraserEnabled;
+    eraserEnabled = true;
+    eraser.classList.add('active');
+    pen.classList.remove('active');
+}
+
+save.onclick = function () {
+    var url = canvas.toDataURL("image/png");
+    var a = document.createElement('a');
+    document.body.appendChild(a);
+    a.download = '我的作品';
+    a.href = url
+    a.target = '_blank'
+    a.click();
+}
+
+clear.onclick = function () {
+    context.clearRect(0,0,canvas.width,canvas.height);
+}
+
+red.onclick = function () {
+    context.strokeStyle = 'red';
+    context.fillStyle = 'red'
+    red.classList.add('active');
+    blue.classList.remove('active');
+    green.classList.remove('active');
+}
+blue.onclick = function () {
+    context.strokeStyle = 'blue';
+    context.fillStyle = 'blue';
+    blue.classList.add('active');
+    red.classList.remove('active');
+    green.classList.remove('active');
+}
+green.onclick = function () {
+    context.strokeStyle = 'green';
+    context.fillStyle = 'green'
+    green.classList.add('active');
+    blue.classList.remove('active');
+    red.classList.remove('active');
+}
+
+thin.onclick = function () {
+    context.lineWidth = 5;
+}
+thick.onclick = function () {
+    context.lineWidth = 10;
 }

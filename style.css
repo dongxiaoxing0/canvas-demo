@@ -2,12 +2,72 @@
     margin: 0;
     padding: 0;
 }
+ol,ul {
+    list-style: none;
+}
 #canvas {
-    background-color: grey;
+    background-color: white;
     display: block;
 }
-#eraser {
+
+.icon {
+    width: 2em;
+    height: 2em;
+    vertical-align: -0.15em;
+    fill: currentColor;
+    overflow: hidden;
+    margin: 0 10px;
+}
+.settings {
     position: fixed;
+    top: 0;
     left: 0;
-    bottom: 0;
+    padding: 20px 20px;
+    transition: all 0.2s;
+}
+.settings svg.active {
+    transform: scale(1.2);
+    color: red;
+}
+.colors {
+    position: fixed;
+    top: 70px;
+    left: 26px;
+}
+.colors > li {
+    margin: 10px 0;
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    box-shadow: 0 0 5px 2px rgb(0,0,0,0.5);
+    transition: all 0.2s;
+}
+.colors > li.active {
+    box-shadow: 0 0 5px 5px rgb(0,0,0,0.6);
+}
+.colors > .red {
+    background-color: red;
+}
+.colors > .blue {
+    background-color: blue;
+}
+.colors > .green {
+    background-color: green;
+}
+
+.lineWidth {
+    position: fixed;
+    top:210px;
+    left: 26px;
+}
+.lineWidth > li {
+    height: 0;
+    width: 30px;
+    margin: 10px 0;
+}
+.lineWidth > .thin{
+    border-top: 2px solid black;
+}
+.lineWidth > .thick{
+    border-top: 4px solid black;
 }
