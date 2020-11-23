@@ -1,5 +1,4 @@
 var canvas = document.getElementById('canvas');
-var context = canvas.getContext('2d');
 
 canvas.width = document.documentElement.clientWidth;
 canvas.height = document.documentElement.clientHeight;
@@ -8,6 +7,8 @@ window.onresize = function () {
     canvas.width = document.documentElement.clientWidth;
     canvas.height = document.documentElement.clientHeight;
 }
+var context = canvas.getContext('2d');
+context.lineWidth = 5;
 
 var enabled = false;
 var eraserEnabled = false;
@@ -15,8 +16,6 @@ var lastPoint = {
     x: undefined,
     y: undefined,
 }
-context.lineWidth = 5;
-
 if (document.body.ontouchstart === undefined) {
     canvas.onmousedown = function (event) {
         enabled = !enabled;
@@ -55,6 +54,7 @@ if (document.body.ontouchstart === undefined) {
     }
 }else{
         canvas.ontouchstart = function (event) {
+            event.preventDefault()
             enabled = !enabled;
             var x = event.touches[0].clientX;
             var y = event.touches[0].clientY;
@@ -69,6 +69,7 @@ if (document.body.ontouchstart === undefined) {
         
         
         canvas.ontouchmove = function (event) {
+            event.preventDefault()
             if (enabled) {
                 var x = event.touches[0].clientX;
                 var y = event.touches[0].clientY;
