@@ -18,6 +18,7 @@ var lastPoint = {
 context.lineWidth = 5;
 
 if (document.body.touchstart === undefined) {
+    console.log('pc')
     canvas.onmousedown = function (event) {
         enabled = !enabled;
         var x = event.clientX;
@@ -54,6 +55,7 @@ if (document.body.touchstart === undefined) {
         enabled = !enabled;
     }
 }else{
+        alert('支持触摸')
         canvas.ontouchstart = function (event) {
             enabled = !enabled;
             var x = event.touches[0].clientX;
