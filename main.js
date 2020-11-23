@@ -58,7 +58,11 @@ if (document.body.ontouchstart === undefined) {
             enabled = !enabled;
             var x = event.touches[0].clientX;
             var y = event.touches[0].clientY;
-            drawCircle(x, y);
+            if (eraserEnabled) {
+                context.clearRect(x-10,y-10,20,20);
+            }else{
+                drawCircle(x, y);
+            }
             lastPoint.x = x;
             lastPoint.y = y;
         }
