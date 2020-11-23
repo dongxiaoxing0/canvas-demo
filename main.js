@@ -18,7 +18,7 @@ var lastPoint = {
 context.lineWidth = 5;
 
 if (document.body.touchstart === undefined) {
-    console.log('pc')
+    alert('不支持触摸')
     canvas.onmousedown = function (event) {
         enabled = !enabled;
         var x = event.clientX;
