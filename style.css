@@ -45,6 +45,9 @@ ol,ul {
 .colors > li.active {
     box-shadow: 0 0 5px 5px rgb(0,0,0,0.6);
 }
+.colors > .black {
+    background-color: black;
+}
 .colors > .red {
     background-color: red;
 }
@@ -57,17 +60,29 @@ ol,ul {
 
 .lineWidth {
     position: fixed;
-    top:210px;
+    top:240px;
     left: 26px;
 }
 .lineWidth > li {
-    height: 0;
-    width: 30px;
+    height: 20px;
+    width: 32px;
     margin: 10px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 2px;
 }
-.lineWidth > .thin{
+.lineWidth > li.active{
+    background-color: #cee5fc;
+    border: 1px solid #64a5e6;
+}
+.lineWidth > li > span{
+    display: block;
+    width: 28px;
+}
+.lineWidth > .thin > span{
     border-top: 2px solid black;
 }
-.lineWidth > .thick{
+.lineWidth > .thick > span{
     border-top: 4px solid black;
 }

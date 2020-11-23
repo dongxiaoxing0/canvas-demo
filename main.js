@@ -119,12 +119,22 @@ clear.onclick = function () {
     context.clearRect(0,0,canvas.width,canvas.height);
 }
 
+black.onclick = function () {
+    context.strokeStyle = 'black'
+    context.fillStyle = 'black'
+    black.classList.add('active')
+    red.classList.remove('active')
+    blue.classList.remove('active')
+    green.classList.remove('active')
+}
+
 red.onclick = function () {
     context.strokeStyle = 'red';
     context.fillStyle = 'red'
     red.classList.add('active');
     blue.classList.remove('active');
     green.classList.remove('active');
+    black.classList.remove('active');
 }
 blue.onclick = function () {
     context.strokeStyle = 'blue';
@@ -132,6 +142,7 @@ blue.onclick = function () {
     blue.classList.add('active');
     red.classList.remove('active');
     green.classList.remove('active');
+    black.classList.remove('active');
 }
 green.onclick = function () {
     context.strokeStyle = 'green';
@@ -139,11 +150,16 @@ green.onclick = function () {
     green.classList.add('active');
     blue.classList.remove('active');
     red.classList.remove('active');
+    black.classList.remove('active');
 }
 
 thin.onclick = function () {
     context.lineWidth = 5;
+    thin.classList.add('active')
+    thick.classList.remove('active')
 }
 thick.onclick = function () {
     context.lineWidth = 10;
+    thick.classList.add('active')
+    thin.classList.remove('active')
 }
